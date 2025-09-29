@@ -75,19 +75,22 @@
         });
         
         // Form submission
-        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const description = document.getElementById('description').value;
-            
-            if (description.trim() === '') {
-                alert('Tafadhali andika maoni yako kabla ya kutuma');
-                return;
-            }
-            
-            // In a real application, you would send this data to a server
-            alert('Asante kwa maoni yako! Tutayachukulia kwa uzito.');
-            document.getElementById('description').value = '';
-        });
+       document.getElementById("feedbackForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // prevent normal form submission
+    const description = document.getElementById("description").value.trim();
+
+    if(description === "") {
+        alert("Tafadhali andika maoni yako kabla ya kutuma");
+        return;
+    }
+
+    // SMS URL
+    const phoneNumber = "+255792148013"; // badilisha na namba yako
+    const smsUrl = `sms:${phoneNumber}?body=${encodeURIComponent(description)}`;
+
+    // Fungua SMS app
+    window.location.href = smsUrl;
+});
         
         // Smooth scrolling for navigation links
         document.querySelectorAll('nav a').forEach(anchor => {
